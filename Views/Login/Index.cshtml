@@ -1,0 +1,66 @@
+﻿@model ProyectoFinalDesarrolloWeb.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/css/Login.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProyectoFinalDesarrolloWeb.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                         class="img-fluid" alt="Sample image">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form asp-controller="Login" asp-action="Index" method="post">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input asp-for="usuario" type="text" id="usuario" class="form-control form-control-lg" placeholder="Ingresa tu nombre de usuario" />
+                            <label class="form-label" for="usuario">Usuario</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-3">
+                            <input asp-for="pass" type="password" id="pass" class="form-control form-control-lg" placeholder="Ingresa tu contraseña" />
+                            <label class="form-label" for="pass">Contraseña</label>
+                        </div>
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                Iniciar
+                            </button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">
+                                ¿No tienes una cuenta? <a href="#!" class="link-danger">Solicitala al departamento de IT</a>
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            <!-- Copyright -->
+            <div class="text-white mb-3 mb-md-0">
+                Copyright © 2023. All rights reserved.
+            </div>
+            <!-- Copyright -->
+        </div>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

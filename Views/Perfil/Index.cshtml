@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ProyectoFinalDesarrolloWeb.Models.PerfilModelo>
+
+@{
+    ViewData["Title"] = "Index";
+
+    VistaModel vista = new VistaModel();
+
+    int noPagina = 0;
+
+    if (ViewBag.Vista != null)
+    {
+        vista = ViewBag.Vista;
+        noPagina = vista.PaginaActual;
+    }
+}
+
+<h1>Perfiles</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Crear">Nuevo Perfil</a>
+</p>
+
+<form asp-action="Index">
+    <div class="row">
+        <div class="col-md-11">
+            <input name="buscar" class="form-control" placeholder="Buscar por descripcion" />
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-info">Buscar</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Editar", new { id=item.Id }, new { @class = "btn btn-primary" }) |
+                    @* @Html.ActionLink("Detalles", "Detalles", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success" }) | *@
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="container">
+    @if (vista.TotalPaginas > 0)
+    {
+        <ul class="pagination justify-content-end">
+            @if (vista.PaginaActual > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Perfil" asp-action="Index" asp-route-pag="1">Primero</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Perfil" asp-action="Index" asp-route-pag="@(vista.PaginaActual - 1)">Anterior</a>
+                </li>
+            }
+
+            @for (var p = vista.PaginaInicial; p <= vista.PaginaFinal; p++)
+            {
+                <li class="page-item @(p == vista.PaginaActual ? "active" : "")">
+                    <a class="page-link" asp-controller="Perfil" asp-action="Index" asp-route-pag="@p">@p</a>
+                </li>
+            }
+
+            @if (vista.PaginaActual < vista.TotalPaginas)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Perfil" asp-action="Index" asp-route-pag="@(vista.PaginaActual + 1)">Siguiente</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Perfil" asp-action="Index" asp-route-pag="@(vista.TotalPaginas)">Último</a>
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="toast show align-items-center text-white bg-success border-0" style="position: absolute; top: 5px; right: 5px;">
+        <div class="d-flex">
+            <div class="toast-body">
+                <strong class="me-auto">@TempData["Mensaje"]</strong>
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+}
