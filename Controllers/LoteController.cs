@@ -12,9 +12,15 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
     public class LoteController : Controller
     {
         Lote l = new Lote();
+        Login log = new Login();
 
         public IActionResult Index(int pag = 1)
         {
+            if (log.ValidarAccion("Lote", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             IEnumerable<LoteModel> lista = l.Consultar();
 
             const int tamanioPagina = 10;
@@ -39,6 +45,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public IActionResult Index(string buscar = "")
         {
+            if (log.ValidarAccion("Lote", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             buscar = string.IsNullOrEmpty(buscar) ? "" : buscar.ToLower();
             IEnumerable<LoteModel> lista = l.Consultar();
             IEnumerable<LoteModel> listaResultado;
@@ -61,6 +72,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Crear()
         {
+            if (log.ValidarAccion("Lote", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             ViewBag.Productos = ListaProductos();
             return View();
         }
@@ -68,6 +84,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public ActionResult Crear(LoteModel modelo)
         {
+            if (log.ValidarAccion("Lote", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             l.Crear(modelo);
             TempData["Mensaje"] = "¡Se creo el lote correctamente!";
             return RedirectToAction("Index");
@@ -75,6 +96,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (log.ValidarAccion("Lote", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             ViewBag.Productos = ListaProductos();
             return View(l.Consultar(id));
         }
@@ -82,6 +108,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public ActionResult Editar(LoteModel modelo)
         {
+            if (log.ValidarAccion("Lote", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             l.Editar(modelo);
             TempData["Mensaje"] = "¡Se edito el lote correctamente!";
             return RedirectToAction("Index");
@@ -89,12 +120,22 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Eliminar(int id)
         {
+            if (log.ValidarAccion("Lote", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             return View(l.Consultar(id));
         }
 
         [HttpPost]
         public ActionResult Eliminar(PacienteModel modelo)
         {
+            if (log.ValidarAccion("Lote", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             l.Eliminar(modelo.Id);
             TempData["Mensaje"] = "¡Se elimino el lote correctamente!";
             return RedirectToAction("Index");

@@ -113,7 +113,6 @@ namespace ProyectoFinalDesarrolloWeb.Datos
         public void Editar(PacienteModel modelo)
         {
             Conectar();
-            PacienteModel paciente = new PacienteModel();
 
             try
             {
@@ -141,7 +140,6 @@ namespace ProyectoFinalDesarrolloWeb.Datos
         public void Eliminar(int id)
         {
             Conectar();
-            PacienteModel paciente = new PacienteModel();
 
             try
             {

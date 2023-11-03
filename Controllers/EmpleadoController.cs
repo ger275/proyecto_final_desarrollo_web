@@ -8,13 +8,18 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ProyectoFinalDesarrolloWeb.Controllers
 {
-    [Authorize]
     public class EmpleadoController : Controller
     {
         Empleado e = new Empleado();
+        Login log = new Login();
 
         public IActionResult Index(int pag = 1)
         {
+            if (log.ValidarAccion("Empleado", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             IEnumerable<EmpleadoModel> lista = e.Consultar();
 
             const int tamanioPagina = 10;
@@ -39,6 +44,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public IActionResult Index(string buscar = "")
         {
+            if (log.ValidarAccion("Empleado", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             buscar = string.IsNullOrEmpty(buscar) ? "" : buscar.ToLower();
             IEnumerable<EmpleadoModel> lista = e.Consultar();
             IEnumerable<EmpleadoModel> listaResultado;
@@ -67,6 +77,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Crear()
         {
+            if (log.ValidarAccion("Empleado", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             ViewBag.Puestos = ListaPuestos();
             return View();
         }
@@ -74,6 +89,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public ActionResult Crear(EmpleadoModel modelo)
         {
+            if (log.ValidarAccion("Empleado", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             e.Crear(modelo);
             TempData["Mensaje"] = "¡Se creo el empleado correctamente!";
             return RedirectToAction("Index");
@@ -81,6 +101,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (log.ValidarAccion("Empleado", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             ViewBag.Puestos = ListaPuestos();
             return View(e.Consultar(id));
         }
@@ -88,6 +113,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public ActionResult Editar(EmpleadoModel modelo)
         {
+            if (log.ValidarAccion("Empleado", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             e.Editar(modelo);
             TempData["Mensaje"] = "¡Se edito el empleado correctamente!";
             return RedirectToAction("Index");
@@ -95,12 +125,22 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Eliminar(int id)
         {
+            if (log.ValidarAccion("Empleado", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             return View(e.Consultar(id));
         }
 
         [HttpPost]
         public ActionResult Eliminar(EmpleadoModel modelo)
         {
+            if (log.ValidarAccion("Empleado", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             e.Eliminar(modelo.Id);
             TempData["Mensaje"] = "¡Se elimino el empleado correctamente!";
             return RedirectToAction("Index");

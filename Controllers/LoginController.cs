@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProyectoFinalDesarrolloWeb.Data;
 using ProyectoFinalDesarrolloWeb.Models;
 
 using Microsoft.AspNetCore.Authentication.Cookies;

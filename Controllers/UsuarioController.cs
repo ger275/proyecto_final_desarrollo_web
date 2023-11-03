@@ -12,9 +12,15 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
     public class UsuarioController : Controller
     {
         Usuario u = new Usuario();
+        Login log = new Login();
 
         public IActionResult Index(int pag = 1)
         {
+            if (log.ValidarAccion("Usuario", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             IEnumerable<UsuarioModel> lista = u.Consultar();
 
             const int tamanioPagina = 10;
@@ -39,6 +45,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public IActionResult Index(string buscar = "")
         {
+            if (log.ValidarAccion("Usuario", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             buscar = string.IsNullOrEmpty(buscar) ? "" : buscar.ToLower();
             IEnumerable<UsuarioModel> lista = u.Consultar();
             IEnumerable<UsuarioModel> listaResultado;
@@ -62,6 +73,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Crear()
         {
+            if (log.ValidarAccion("Usuario", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             ViewBag.Empleados = ListaEmpleados();
             ViewBag.Perfiles = ListaPerfiles();
             return View();
@@ -70,6 +86,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public ActionResult Crear(UsuarioModel modelo)
         {
+            if (log.ValidarAccion("Usuario", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             u.Crear(modelo);
             TempData["Mensaje"] = "¡Se creo el usuario correctamente!";
             return RedirectToAction("Index");
@@ -77,6 +98,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (log.ValidarAccion("Usuario", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             ViewBag.Empleados = ListaEmpleados();
             ViewBag.Perfiles = ListaPerfiles();
             return View(u.Consultar(id));
@@ -85,6 +111,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public ActionResult Editar(UsuarioModel modelo)
         {
+            if (log.ValidarAccion("Usuario", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             u.Editar(modelo);
             TempData["Mensaje"] = "¡Se edito el usuario correctamente!";
             return RedirectToAction("Index");
@@ -92,12 +123,22 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Eliminar(int id)
         {
+            if (log.ValidarAccion("Usuario", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             return View(u.Consultar(id));
         }
 
         [HttpPost]
         public ActionResult Eliminar(UsuarioModel modelo)
         {
+            if (log.ValidarAccion("Usuario", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             u.Eliminar(modelo.Id);
             TempData["Mensaje"] = "¡Se elimino el usuario correctamente!";
             return RedirectToAction("Index");

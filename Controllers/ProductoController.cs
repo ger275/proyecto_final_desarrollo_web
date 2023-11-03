@@ -11,9 +11,15 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
     public class ProductoController : Controller
     {
         Producto p = new Producto();
+        Login log = new Login();
 
         public IActionResult Index(int pag = 1)
         {
+            if (log.ValidarAccion("Producto", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             IEnumerable<ProductoModel> lista = p.Consultar();
 
             const int tamanioPagina = 10;
@@ -38,6 +44,11 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public IActionResult Index(string buscar = "")
         {
+            if (log.ValidarAccion("Producto", "Index", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             buscar = string.IsNullOrEmpty(buscar) ? "" : buscar.ToLower();
             IEnumerable<ProductoModel> lista = p.Consultar();
             IEnumerable<ProductoModel> listaResultado;
@@ -61,12 +72,22 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Crear()
         {
+            if (log.ValidarAccion("Producto", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Crear(ProductoModel modelo)
         {
+            if (log.ValidarAccion("Producto", "Crear", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             p.Crear(modelo);
             TempData["Mensaje"] = "¡Se creo el producto correctamente!";
             return RedirectToAction("Index");
@@ -74,12 +95,22 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (log.ValidarAccion("Producto", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             return View(p.Consultar(id));
         }
 
         [HttpPost]
         public ActionResult Editar(ProductoModel modelo)
         {
+            if (log.ValidarAccion("Producto", "Editar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             p.Editar(modelo);
             TempData["Mensaje"] = "¡Se edito el producto correctamente!";
             return RedirectToAction("Index");
@@ -87,12 +118,22 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
 
         public ActionResult Eliminar(int id)
         {
+            if (log.ValidarAccion("Producto", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             return View(p.Consultar(id));
         }
 
         [HttpPost]
         public ActionResult Eliminar(ProductoModel modelo)
         {
+            if (log.ValidarAccion("Producto", "Eliminar", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
             p.Eliminar(modelo.Id);
             TempData["Mensaje"] = "¡Se elimino el producto correctamente!";
             return RedirectToAction("Index");
