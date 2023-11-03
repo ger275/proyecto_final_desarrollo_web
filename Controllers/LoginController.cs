@@ -5,6 +5,7 @@ using ProyectoFinalDesarrolloWeb.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using ProyectoFinalDesarrolloWeb.Datos;
 
 namespace ProyectoFinalDesarrolloWeb.Controllers
 {
@@ -18,7 +19,7 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(LoginModel modelo)
         {
-            DA_Logica d = new DA_Logica();
+            Login d = new Login();
 
             var usuario = d.ValidarUsuario(modelo.usuario, modelo.pass);
 
