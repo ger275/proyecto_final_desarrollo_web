@@ -54,7 +54,7 @@
             </td>
             <td>
                     @Html.ActionLink("Editar", "Editar", new { id=item.Id }, new { @class = "btn btn-primary" }) |
-                    @* @Html.ActionLink("Detalles", "Detalles", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success" }) | *@
+                    @Html.ActionLink("Ver Permisos", "PermisosPerfil", new { id=item.Id }, new { @class = "btn btn-success" }) |
                     @Html.ActionLink("Eliminar", "Eliminar", new { id=item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>

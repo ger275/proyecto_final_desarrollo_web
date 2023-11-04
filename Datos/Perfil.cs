@@ -139,5 +139,123 @@ namespace ProyectoFinalDesarrolloWeb.Datos
                 Desconectar();
             }
         }
+
+        public PermisoPerfilModel ConsultarPerfil(int id)
+        {
+            Conectar();
+            PermisoPerfilModel permiso = new PermisoPerfilModel();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("select * from perfil where id = " + id, cn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    permiso = new PermisoPerfilModel()
+                    {
+                        Id = (int)reader[0],
+                        perfil = reader[1] + "",
+                        idPerfil = reader[0] + "",
+                        idPermiso = ""
+                    };
+                }
+            }
+            catch (MySqlException e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Desconectar();
+            }
+
+            return permiso;
+        }
+
+        public void CrearPermisoPerfil(PermisoPerfilModel modelo)
+        {
+            Conectar();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("insert into permiso_por_perfil(idPerfil, idPermiso) " +
+                    "values('" + modelo.idPerfil + "', '" + modelo.idPermiso + "')", cn);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
+
+        public IEnumerable<PermisoModel> ConsultarPermisosPerfil(int idPerfil)
+        {
+            Conectar();
+            List<PermisoModel> lista = new List<PermisoModel>();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("select pp.id, p.menu, p.controlador, p.accion, p.titulo " +
+                    "from permiso_por_perfil as pp join permiso as p on pp.idPermiso = p.id and pp.idPerfil = " + idPerfil + " order by p.controlador asc, p.accion asc", cn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    PermisoModel model = new PermisoModel()
+                    {
+                        Id = (int)reader[0],
+                        menu = reader[1] + "",
+                        controlador = reader[2] + "",
+                        accion = reader[3] + "",
+                        titulo = reader[4] + ""
+                    };
+
+                    lista.Add(model);
+                }
+            }
+            catch (MySqlException e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Desconectar();
+            }
+
+            return lista;
+        }
+
+        public void EliminarPermisoPerfil(int id)
+        {
+            Conectar();
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("delete from permiso_por_perfil where id = " + id, cn);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (MySqlException e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Desconectar();
+            }
+        }
     }
 }

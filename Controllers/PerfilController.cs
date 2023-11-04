@@ -3,6 +3,9 @@ using ProyectoFinalDesarrolloWeb.Datos;
 using ProyectoFinalDesarrolloWeb.Models;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MySql.Data.MySqlClient;
+using System.Reflection;
 
 namespace ProyectoFinalDesarrolloWeb.Controllers
 {
@@ -134,6 +137,95 @@ namespace ProyectoFinalDesarrolloWeb.Controllers
             p.Eliminar(modelo.Id);
             TempData["Mensaje"] = "¡Se elimino el perfil correctamente!";
             return RedirectToAction("Index");
+        }
+
+        public ActionResult PermisosPerfil(int id)
+        {
+            if (log.ValidarAccion("Perfil", "PermisosPerfil", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
+            IEnumerable<PermisoModel> lista = p.ConsultarPermisosPerfil(id);
+            ViewBag.permisosPerfil = lista;
+            ViewBag.Permisos = ListaPermisos(id);
+
+            return View(p.ConsultarPerfil(id));
+        }
+
+        [HttpPost]
+        public ActionResult PermisosPerfil(PermisoPerfilModel modelo)
+        {
+            if (log.ValidarAccion("Perfil", "PermisosPerfil", User.Identity.Name) == 0)
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
+            p.CrearPermisoPerfil(modelo);
+
+            //return RedirectToAction("PermisosPerfil", "Perfil", modelo.idPerfil);
+            return RedirectToAction("PermisosPerfil", new { id = modelo.idPerfil });
+        }
+
+        public ActionResult EliminarPermisoPerfil(int id)
+        {
+            int idPerfil = 0;
+
+            Conexion cn = new Conexion();
+
+            try
+            {
+                cn.Conectar();
+
+                MySqlCommand cmd = new MySqlCommand("select idPerfil from permiso_por_perfil where id = " + id, cn.cn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    idPerfil = (int)reader[0];
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw;
+            }
+            int dd = idPerfil;
+            p.EliminarPermisoPerfil(id);
+
+            return RedirectToAction("PermisosPerfil", new { id = 3 });
+        }
+
+        private List<SelectListItem> ListaPermisos(int idPerfil)
+        {
+            List<SelectListItem> lista = new();
+            lista.Add(new SelectListItem() { Text = "--Seleccione", Value = "", Selected = true });
+
+            Conexion cn = new Conexion();
+
+            try
+            {
+                cn.Conectar();
+
+                MySqlCommand cmd = new MySqlCommand("select p.id, concat('CONTROLADOR: ', p.controlador, ' - ACCION: ', p.titulo) " +
+                    "from permiso as p " +
+                    "where not exists (select * from permiso_por_perfil as pp where p.id = pp.idPermiso and pp.idPerfil = '" + idPerfil + "') " +
+                    "order by p.controlador asc, p.accion asc", cn.cn);
+                cmd.CommandType = System.Data.CommandType.Text;
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new SelectListItem() { Text = (string)reader[1], Value = reader[0] + "", Selected = false });
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw;
+            }
+
+
+            return lista;
         }
     }
 }

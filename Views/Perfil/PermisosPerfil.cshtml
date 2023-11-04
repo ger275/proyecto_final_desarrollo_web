@@ -1,0 +1,81 @@
+﻿@model ProyectoFinalDesarrolloWeb.Models.PermisoPerfilModel
+
+@{
+    ViewData["Title"] = "Asignar Permisos";
+}
+
+<h1>Asignar Permisos</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PermisosPerfil">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="perfil" class="control-label"></label>
+                <input asp-for="perfil" class="form-control" readonly />
+                <span asp-validation-for="perfil" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idPermiso" class="control-label"></label>
+                @* <input asp-for="idPermiso" class="form-control" /> *@
+                <select asp-for="idPermiso" class="form-select" asp-items="@(new SelectList(ViewBag.Permisos, "Value", "Text", ""))"></select>
+                <span asp-validation-for="idPermiso" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group row g-2">
+                <div class="col-auto">
+                    <input type="submit" value="Agregar" class="btn btn-primary" />
+                </div>
+                <div class="col-auto">
+                    <a asp-action="Index" class="btn btn-secondary">Regresar</a>
+                </div>
+            </div>
+            <div class="form-group invisible">
+                <label asp-for="idPerfil" class="control-label"></label>
+                <input asp-for="idPerfil" class="form-control" readonly />
+                <span asp-validation-for="idPerfil" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+
+    <h4>Permisos del Perfil</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Controlador
+                </th>
+                <th>
+                    Acción
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.permisosPerfil)
+            {
+                <tr>
+                    <td>
+                        @item.controlador
+                    </td>
+                    <td>
+                        @item.accion
+                    </td>
+                    <td>
+                        @Html.ActionLink("Eliminar", "EliminarPermisoPerfil", new { id=item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
