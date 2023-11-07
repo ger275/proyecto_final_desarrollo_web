@@ -32,6 +32,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Habitacion/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFiaXRhY2lvblxDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Habitacion/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFiaXRhY2lvblxFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Habitacion/Eliminar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFiaXRhY2lvblxFbGltaW5hci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Habitacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFiaXRhY2lvblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +74,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Lote/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG90ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/PacienteHabitacion/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVIYWJpdGFjaW9uXENyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/PacienteHabitacion/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVIYWJpdGFjaW9uXEVkaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/PacienteHabitacion/Eliminar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVIYWJpdGFjaW9uXEVsaW1pbmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/PacienteHabitacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVIYWJpdGFjaW9uXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Paciente/Crear.cshtml]
@@ -110,6 +142,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Permiso/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVybWlzb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/ProductoCliente/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9DbGllbnRlXENyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/ProductoCliente/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9DbGllbnRlXEVkaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/ProductoCliente/Eliminar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9DbGllbnRlXEVsaW1pbmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/ProductoCliente/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9DbGllbnRlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Windows 10/Tareas/2023/segundo semestre/desarrollo_web/proyecto_final/Codigo_web/ProyectoFinalDesarrolloWeb/Views/Producto/Crear.cshtml]

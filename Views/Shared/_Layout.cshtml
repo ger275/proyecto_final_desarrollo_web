@@ -30,6 +30,36 @@
                     <ul class="navbar-nav flex-grow-1">
                         
                         @{
+                            tienePermisoMenu = l.ValidarMenu("Habitaciones", User.Identity.Name);
+                        }
+                        @if (tienePermisoMenu == 1)
+                        {
+                            <li class="nav-item">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown4" aria-controls="navbarNavDarkDropdown4" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown4">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Habitaciones
+                                            </a>
+                                            @{
+                                                IEnumerable<MenuItemModel> lista = l.GetItemsMenu("Habitaciones", User.Identity.Name);
+                                            }
+                                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink4">
+                                                @foreach (var item in lista)
+                                                {
+                                                    <li><a class="dropdown-item" asp-area="" asp-controller="@item.controlador" asp-action="@item.accion">@item.titulo</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @{
                             tienePermisoMenu = l.ValidarMenu("Pacientes", User.Identity.Name);
                         }
                         @if (tienePermisoMenu == 1)
